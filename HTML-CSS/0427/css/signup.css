@@ -1,0 +1,150 @@
+/* html::-webkit-scrollbar {
+  display: none;
+} */
+body {
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+  border-bottom: #eeeeee 2px solid;
+  margin: 0;
+  /* position: absolute; */
+  padding-left: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav {
+  display: flex;
+}
+nav h4 {
+  margin-right: 25px;
+}
+footer {
+  background-color: #eeeeee;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+/* login form 부분 */
+form {
+  width: 400px;
+  margin-bottom: 100px;
+  font-weight: 600;
+  font-size: 17px;
+  /* height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+.login-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h2 {
+  margin-bottom: 10px;
+}
+h5 {
+  margin-top: 10px;
+  color: gray;
+  font-size: 15px;
+}
+
+form div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  height: 35px;
+  align-items: center;
+}
+form input {
+  border: 2px #d9d9d9 solid;
+  padding: 5px;
+  border-radius: 5px;
+  width: 290px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.gender-box {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.gender-box legend {
+  margin-right: 65px;
+}
+.gender-box div {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.gender-box div input {
+  margin-right: 10px;
+}
+.user-tech {
+  height: 70px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+.user-tech legend {
+  margin-top: 0;
+  margin-right: 20px;
+  width: 80px;
+  word-wrap: normal;
+}
+.user-tech_checks {
+  padding: 0;
+  display: flex;
+  justify-content: left;
+  box-sizing: border-box;
+  height: 70px;
+  flex-wrap: wrap;
+}
+.user-tech_checks span {
+  flex-wrap: nowrap;
+  margin-right: 5px;
+}
+.user-tech_checks label {
+  font-size: 13px;
+}
+form input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+}
+form input[type="radio"] {
+  width: 12px;
+  height: 12px;
+}
+button {
+  width: 100%;
+  background-color: #4a68d9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
+button:hover {
+  background-color: whitesmoke;
+  color: gray;
+  box-shadow: 0 0 10px #4a68d9;
+  font-weight: bolder;
+}
+.box__id-save {
+  justify-content: left;
+}
+.box__id-save > input {
+  margin: 0 10px 0 5px;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML/CSS 실습</title>
+    <link rel="stylesheet" href="css/signup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>HTML/CSS 실습</h1>
+      <nav>
+        <h4>로그인</h4>
+        <h4>회원가입</h4>
+        <h4>로그아웃</h4>
+      </nav>
+    </header>
+    <div class="login-title">
+      <h2>회원가입</h2>
+      <h5>원활한 서비스의 이용을 위해 회원가입을 해주세요</h5>
+    </div>
+
+    <form action="post" class="login-form">
+      <div>
+        <label for="user-id">아이디</label>
+        <input type="text" name="user-id" required />
+      </div>
+      <div>
+        <label for="email">이메일</label>
+        <input type="email" name="email" required />
+      </div>
+      <div>
+        <label for="password">비밀번호</label>
+        <input type="password" name="password" required />
+      </div>
+      <div>
+        <label for="nickname">닉네임</label>
+        <input type="text" name="nickname" />
+      </div>
+      <div class="gender-box">
+      <legend>성별</legend>
+        <div>
+          <span><input type="radio" name="gender" id="gender1" /><label for="gender1"
+            >남성</label
+          ></span>
+          <span><input type="radio" name="gender" id="gender2" /><label for="gender2"
+            >여성</label
+          ></span>
+          <span><input type="radio" name="gender" id="gender3" /><label for="gender3"
+            >선택 안함</label
+          ></span>
+        </div>
+      </div>
+      <div class="user-tech">
+        <p><legend>사용 기술</legend></p>
+        <div class="user-tech_checks">
+          <span><input type="checkbox" id="tech1"><label for="tech1">HTML</label></input></span>
+          <span><input type="checkbox" id="tech2"><label for="tech2">CSS</label></input></span>
+          <span><input type="checkbox" id="tech3"><label for="tech3">JavaScript</label></input></span>
+          <span><input type="checkbox" id="tech4"><label for="tech4">Python</label></input></span>
+          <span><input type="checkbox" id="tech5"><label for="tech5">Django</label></input></span>
+          <span><input type="checkbox" id="tech6"><label for="tech6">Github</label></input></span>
+          <span><input type="checkbox" id="tech7"><label for="tech7">PostgreSQL</label></input></span>
+        </div>
+      </div>
+      <button>회원가입</button>
+    </form>
+    <footer>
+      <span>Copyright 2023. 신유림 All rights reserved.</span>
+    </footer>
+  </body>
+</html>
