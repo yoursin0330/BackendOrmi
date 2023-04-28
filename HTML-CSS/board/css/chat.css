@@ -1,0 +1,10 @@
+.chat-wrap {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+.chat-info {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}

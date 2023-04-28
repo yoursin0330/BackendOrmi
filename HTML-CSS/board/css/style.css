@@ -1,20 +1,18 @@
-body{
-    padding:20px;
-}
-.title{
-    background-color: #EEEEEE;
-    border: none;
-    border-top: black 3px solid;
-    border-bottom: #D9D9D9 2px solid;
-    padding-left: 10px;
-    padding-bottom: 15px;
-}
-.title span{
-    margin:auto 5px;
-}
-.title span:first-of-type{
-    margin-left: 0;
-}
-.main-text{
-    margin: 20px;
+@import "./join.css";
+@import "./login.css";
+
+/* 게시판 */
+@import "./board-write.css";
+@import "./board.css";
+
+@import "./layout.css";
+/* html::-webkit-scrollbar {
+  display: none;
+} */
+
+body {
+  margin: 0;
+  padding: 0px;
+  position: relative;
+  height: 100vh;
 }

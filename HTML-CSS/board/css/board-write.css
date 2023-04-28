@@ -1,0 +1,14 @@
+.board-write .write-button {
+  text-align: right;
+}
+.board-write table {
+  border-spacing: 0;
+}
+.board-write tr {
+  margin: 0;
+  border: none;
+  padding: 10px 0;
+}
+.board-write table th {
+  background-color: gray;
+}

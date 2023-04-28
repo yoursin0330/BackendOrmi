@@ -1,0 +1,31 @@
+#layout__header header {
+  border-bottom: #eeeeee 2px solid;
+  margin: 0;
+  position: absolute;
+  padding-left: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#layout__header .header-click {
+  display: flex;
+}
+#layout__header .header-click span {
+  margin-right: 25px;
+}
+#layout__header .header-click span button {
+  border: none;
+  background-color: inherit;
+}
+#layout__footer footer {
+  background-color: #eeeeee;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}

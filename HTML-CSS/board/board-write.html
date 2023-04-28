@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판 글작성</title>
+    <link rel="stylesheet" href="css/board-write.css" />
+  </head>
+  <body class="board-write">
+    <h1>글쓰기</h1>
+    <table>
+      <tbody>
+        <tr class="row__write-category">
+          <th>
+            <label for="write-category">카테고리</label>
+          </th>
+          <td>
+            <select name="write-category" id="">
+              <option value="write-category__normal">일반</option>
+              <option value="write-category__notice">공지사항</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr class="row__write-title">
+          <th><label for="write-title">제목</label></th>
+          <td>
+            <input type="text" name="write-title" />
+          </td>
+        </tr>
+        <tr class="row__write-text">
+          <th>
+            <label for="write-text">내용</label>
+          </th>
+          <td>
+            <input type="textarea" />
+          </td>
+        </tr>
+        <tr class="row__write-file">
+          <th>
+            <label for="write-file">파일첨부</label>
+          </th>
+          <td>
+            <input type="file" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="write-button">
+      <button type="button">
+        <a href="board.html">목록</a>
+      </button>
+      <button type="button">초기화</button>
+      <button type="button">작성</button>
+    </div>
+  </body>
+</html>
