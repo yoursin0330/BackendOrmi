@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      console.log("hello world"); //print와 같다
+      let x = "hello";
+      console.dir(x); //print(dir(x))와 같다
+      const y = {
+        one: 1,
+        two: 2,
+        three: 3,
+      };
+      console.table(y); //테이블로 보여줌
+
+      console.group("one");
+      console.log("a/팀원");
+      console.log("b/팀원");
+      console.log("c/팀원");
+
+      console.group("two");
+      console.log("A/팀원");
+      console.log("B/팀원");
+      console.log("C/팀원");
+      console.groupEnd();
+      console.log("end");
+      console.groupEnd();
+      console.log("end");
+    </script>
+  </body>
+</html>
