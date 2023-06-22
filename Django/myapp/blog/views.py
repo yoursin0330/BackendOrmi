@@ -1,6 +1,7 @@
+from typing import Any, Dict
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Post
 from .forms import PostForm
 from django.urls import reverse_lazy
@@ -54,10 +55,37 @@ class List(ListView):
 class Write(CreateView):
     model = Post
     form_class = PostForm
-    success_url = reverse_lazy('blog:list')
+    success_url = reverse_lazy('blog:list') #성공시 보내줄 url
 
 
-class Detail(DeleteView):
+class Detail(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'post'
+
+
+class Update(UpdateView):
+    model = Post
+    template_name = 'blog/post_edit.html'
+    fields = ['title', 'content']
+    success_url = reverse_lazy('blog:list')
+
+
+    #initial 기능 -> form 안에 값을 미리 넣어주기 위해서
+    def get_initial(self) -> Dict[str, Any]:
+        initial = super().get_initial() # UpdateView(generic view)에서 제공하는 initial(딕셔너리 형태)
+        post = self.get_object() # pk 기반으로 객체를 가져옴
+        initial['title'] = post.title
+        initial['content'] = post.content
+        return initial
+    
+    def get_success_url(self): 
+        post = self.get_object() #pk  기반으로 현재 객체 가져오기
+        return reverse_lazy('blog:detail', kwargs={'pk' : post.pk})
+    
+    # # get_absolute_url
+    # def get_absolute_url(self):
+
+class Delete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('blog:list')
