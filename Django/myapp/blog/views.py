@@ -1,9 +1,9 @@
 from typing import Any, Dict
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import Post
-from .forms import PostForm
+from django.views.generic import ListView, CreateView,  UpdateView, DeleteView #DetailView
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 # Create your views here.
 # 어떤 응답을 해 줄건지
@@ -16,8 +16,6 @@ from django.urls import reverse_lazy
 
 class Index(View):
     def get(self, request):
-        # return HttpResponse('Index Page GET class')
-
         #데이터베이스에 접근해서 값을 가져와야 합니다.
         post_objs = Post.objects.all()
         # context = 데이터베이스에서 가져온 값
@@ -43,6 +41,7 @@ class Index(View):
         return render(request, 'blog/write.html',{'form' : form} )
     
 
+### Post
 # Django 자체의 클래스 뷰 기능도 강력하고 편리
 # django.views.generic -> ListView
 class List(ListView):
@@ -58,10 +57,10 @@ class Write(CreateView):
     success_url = reverse_lazy('blog:list') #성공시 보내줄 url
 
 
-class Detail(DetailView):
-    model = Post
-    template_name = 'blog/post_detail.html'
-    context_object_name = 'post'
+# class Detail(DetailView):
+#     model = Post
+#     template_name = 'blog/post_detail.html'
+#     context_object_name = 'post'
 
 
 class Update(UpdateView):
@@ -89,3 +88,37 @@ class Update(UpdateView):
 class Delete(DeleteView):
     model = Post
     success_url = reverse_lazy('blog:list')
+
+class DetailView(View):
+    
+    def get(self, request, post_id):
+        # list -> object 상세 페이지 -> 상세 페이지 하나의 내용
+
+        # 데이터베이스 방문(POST 아님)
+        # 해당 글
+        post = Post.objects.get(pk=post_id)
+        # 댓글
+        comments = Comment.objects.all(post=post)
+        return response
+
+### Comment
+class CommentWrite(View):
+    # GET, POST에 따라 알아서 함수 작동됨
+    # def get(self, request):
+    #     pass
+    def post(self, request, post_id): 
+        #post의 id를 외부에서 이 함수가 동작할 때 받아옴
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            #우측은 input에 있는  fields의 content
+            #좌측은 새로 만든 변수
+            post = Post.objects.get(pk = post_id)
+            # 연결될 수 있도록. 그냥 숫자 넣으면 연결X
+            # id를 통해 Post 객체를 불러와서 넣어줌
+
+            #댓글 객체 생성
+            comment = Comment.objects.create(post=post, content=content)
+        return redirect('blog:detail', pk=post_id)
+
+

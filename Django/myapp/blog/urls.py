@@ -8,7 +8,7 @@ urlpatterns = [
     #글 조회
     path("",views.List.as_view(), name='list'),
     #글 상세조회
-    path("detail/<int:pk>",views.Detail.as_view(),name='detail'), #blog/detail/1
+    path("detail/<int:pk>",views.DetailView.as_view(),name='detail'), #blog/detail/1
     #글 작성
     path("write/",views.Write.as_view(), name='write'), #blog/write
     #글 수정
@@ -16,5 +16,6 @@ urlpatterns = [
     #글 삭제
     path("detail/<int:pk>/delete",views.Delete.as_view(), name="delete")
     #코멘트 작성
+    path("detail/<int:post_id>/comment",views.CommentWrite.as_view(), name='comment')
     #코멘트 삭제
 ]
