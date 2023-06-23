@@ -5,9 +5,57 @@
     <p>내용 : {{post.content}}</p>
     <p>작성자 : {{post.writer}}</p>
     <p>작성일 : {{post.created_at}}</p>
+
+    {% if hashtags %}
+    <div>
+        {% for hashtag in hashtags %}
+        <span>#{{hashtag}} </span>
+        <form action="{% url 'blog:tag-delete' hashtag_id=hashtag.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="x" style="color: red">
+        </form>
+        {% endfor %}
+    </div>
+    {% endif %}
     <a href="{% url 'blog:edit' pk=post.pk %}" class="btn btn-outline-success">수정</a>
     <form action="{% url 'blog:delete' pk=post.pk %}" method="post">
         {% csrf_token %}
         <input type="submit" value="삭제" class="btn btn-outline-success">
     </form>
+
+    <!-- comments 작성 화면-->
+    <h3>댓글</h3>
+    <!-- commenets -->
+    <form action="{% url 'blog:cm-write' pk=post.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.content}}
+        <input type="submit" value="댓글 작성">
+    </form>
+    <hr>
+    <!-- if 문 -->
+    {% if comments %}
+    <ul>
+        {% for comment in comments %}
+        <div>
+            <p>{{comment.content}} / {{comment.created_at}}</p>
+            <form action="{% url 'blog:cm-delete' comment_id=comment.pk %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="삭제" class="btn btn-outline-success">
+            </form>
+        </div>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>댓글이 없습니다.</p>
+    {% endif %}
+    <hr>
+
+    <!-- 태그 작성 화면 -->
+    <h3>해시태그</h3>
+    <form action="{% url 'blog:tag-write' pk=post.pk %}" method="post">
+        {% csrf_token %}
+        {{hashtag_form.name}}
+        <input type="submit" value="태그 작성">
+    </form>
+    
 {% endblock %}

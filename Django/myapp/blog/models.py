@@ -12,14 +12,19 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE) 
+    post = models.ForeignKey('Post', on_delete=models.CASCADE) 
     # Post 참조하겠다
     content = models.TextField()
     writer = models.CharField(max_length=10)
-    creted_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'Comment on {self.post.title}'
 
-# class User():
-#     email = models.OneToOneField() #이메일을 고유값으로 설정
+class HashTag(models.Model):
+    post = models.ForeignKey("Post", on_delete=models.CASCADE)
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+    
