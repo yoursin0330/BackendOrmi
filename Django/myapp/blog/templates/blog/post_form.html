@@ -1,9 +1,18 @@
-{% extends 'blog/base.html' %} 
+{% extends 'blog/base.html' %}
 
 {% block content %}
-    <form action="{% url 'blog:write' %}" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" class="btn btn-outline-success">
-    </form>
+  <form action="{% url 'blog:write' %}" method="post">
+    {% csrf_token %}
+    <br>
+    {{form.title.label}}
+    :
+    {{form.title}}
+    <hr>
+    <p>{{form.content.label}}
+      :
+    </p>
+    {{form.content}}
+    <br>
+    <input type="submit" class="btn btn-outline-success">
+  </form>
 {% endblock %}
