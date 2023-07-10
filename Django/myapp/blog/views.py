@@ -190,20 +190,31 @@ class DetailView(View):
         # print(post)
         
         # 댓글
+        # comments = Comment.objects.select_related('post').filter(post__pk=pk)
+        # hashtags = HashTag.objects.select_related('post').filter(post__pk=pk)
+
         # comments = Comment.objects.select_related('writer').filter(post=post)
         # comments = Comment.objects.select_related('writer').filter(post__pk=pk)
-        comments = Comment.objects.select_related('post') # -> comments[0]
+        # comments = Comment.objects.select_related('post') # -> comments[0]
         # comment = Comment.objects.select_related('post').first()
         # 해시태그
         # hashtags = HashTag.objects.select_related('writer').filter(post=post)
         # hashtags = HashTag.objects.select_related('writer').filter(post__pk=pk)
-        hashtags = HashTag.objects.select_related('post')
+        # hashtags = HashTag.objects.select_related('post')
         # print(comments[0].post.title)
         # for comment in comments:
         #     print(comment.post)
         # <QuerySet[]>
         # value.attr
         # print(hashtags)
+
+        #글
+        # 관련된 거 다 가져옴
+        # Object.objexts.prefetch_related('역참조필드_set').get(조건)
+        post = Post.objects.prefetch_related('comment_set','hashtag_set').get(pk=pk)
+
+        comments = post.comment_set.all()
+        hashtags = post.hashtag_set.all()
         
         # 댓글 Form
         comment_form = CommentForm()
@@ -214,10 +225,10 @@ class DetailView(View):
         context = {
             "title": "Blog",
             'post_id': pk,
-            'post_title': comments[0].post.title,
-            'post_content': comments[0].post.content,
-            'post_writer': comments[0].post.writer,
-            'post_created_at': comments[0].post.created_at,
+            'post_title': post.title,
+            'post_content': post.content,
+            'post_writer': post.writer,
+            'post_created_at': post.created_at,
             'comments': comments,
             'hashtags': hashtags,
             'comment_form': comment_form,
