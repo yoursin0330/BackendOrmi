@@ -14,6 +14,9 @@ from pathlib import Path
 
 # Auth user
 AUTH_USER_MODEL = 'user.User'
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'http://localhost']
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,6 +80,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
+#REST Framework
+REST_FRAMEWORK ={
+    'DEFAULT_THROTTLE_CLASS': {
+        'rest_framework.throttling.AnnoRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    },
+    'DEFAULT_THROTTLE_RATES':{
+        'anon':'5/hour', #sec, min, hour, day
+        'user':'20/hour',
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -107,6 +122,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# SESSION
+SESSION_ENGINE = 'django.contrib.sessions.backends.db' 
+#session을 db에 저장
+
+SESSION_COOKIE_AGE = 86400 # 24H * 60M * 60 -> client(browwer)에 어느정도 유지시킬 것인지
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+# server session -> client session_id
+# server에서 session을 지워줘야 한다
+# python manage.py clearsessions -> corn (crontab) : 스케쥴 설정 가능
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -115,16 +139,26 @@ LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
 
-USE_I18N = True
+USE_I18N = True #다국가적 언어코드
 
-USE_TZ = True
+USE_TZ = True #timezone
 
+LANGUAGES = [
+    ('kr', 'Korean'),
+    ('en', 'English')
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL =  'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+#STATIC을 어떻게 설정할건지
 
+# Media files
+
+MEDIA_URL ='media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
